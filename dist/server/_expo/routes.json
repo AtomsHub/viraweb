@@ -1,0 +1,136 @@
+{
+  "apiRoutes": [],
+  "htmlRoutes": [
+    {
+      "file": "./(root)/(tabs)/index.jsx",
+      "page": "/(root)/(tabs)/index",
+      "namedRegex": "^(?:/\\(root\\))?(?:/\\(tabs\\))?(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(root)/(redeem)/index.jsx",
+      "page": "/(root)/(redeem)/index",
+      "namedRegex": "^(?:/\\(root\\))?(?:/\\(redeem\\))?(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./index.jsx",
+      "page": "/index",
+      "namedRegex": "^/(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(root)/(tabs)/task.jsx",
+      "page": "/(root)/(tabs)/task",
+      "namedRegex": "^(?:/\\(root\\))?(?:/\\(tabs\\))?/task(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(root)/(redeem)/data.jsx",
+      "page": "/(root)/(redeem)/data",
+      "namedRegex": "^(?:/\\(root\\))?(?:/\\(redeem\\))?/data(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(root)/(other)/about.jsx",
+      "page": "/(root)/(other)/about",
+      "namedRegex": "^(?:/\\(root\\))?(?:/\\(other\\))?/about(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(auth)/verify.jsx",
+      "page": "/(auth)/verify",
+      "namedRegex": "^(?:/\\(auth\\))?/verify(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(root)/(tabs)/history.jsx",
+      "page": "/(root)/(tabs)/history",
+      "namedRegex": "^(?:/\\(root\\))?(?:/\\(tabs\\))?/history(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(root)/(tabs)/account.jsx",
+      "page": "/(root)/(tabs)/account",
+      "namedRegex": "^(?:/\\(root\\))?(?:/\\(tabs\\))?/account(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(root)/(redeem)/airtime.jsx",
+      "page": "/(root)/(redeem)/airtime",
+      "namedRegex": "^(?:/\\(root\\))?(?:/\\(redeem\\))?/airtime(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(auth)/welcome.jsx",
+      "page": "/(auth)/welcome",
+      "namedRegex": "^(?:/\\(auth\\))?/welcome(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(auth)/sign-up.jsx",
+      "page": "/(auth)/sign-up",
+      "namedRegex": "^(?:/\\(auth\\))?/sign\\-up(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(auth)/sign-in.jsx",
+      "page": "/(auth)/sign-in",
+      "namedRegex": "^(?:/\\(auth\\))?/sign\\-in(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "expo-router/build/views/Sitemap.js",
+      "page": "/_sitemap",
+      "namedRegex": "^/_sitemap(?:/)?$",
+      "routeKeys": {},
+      "generated": true
+    },
+    {
+      "file": "./(root)/(other)/socialMedia.jsx",
+      "page": "/(root)/(other)/socialMedia",
+      "namedRegex": "^(?:/\\(root\\))?(?:/\\(other\\))?/socialMedia(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(root)/(other)/bankDetails.jsx",
+      "page": "/(root)/(other)/bankDetails",
+      "namedRegex": "^(?:/\\(root\\))?(?:/\\(other\\))?/bankDetails(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(root)/(redeem)/bankTransfer.jsx",
+      "page": "/(root)/(redeem)/bankTransfer",
+      "namedRegex": "^(?:/\\(root\\))?(?:/\\(redeem\\))?/bankTransfer(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(auth)/subscription.jsx",
+      "page": "/(auth)/subscription",
+      "namedRegex": "^(?:/\\(auth\\))?/subscription(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(root)/(other)/profileDetails.jsx",
+      "page": "/(root)/(other)/profileDetails",
+      "namedRegex": "^(?:/\\(root\\))?(?:/\\(other\\))?/profileDetails(?:/)?$",
+      "routeKeys": {}
+    },
+    {
+      "file": "./(root)/(other)/changePassword.jsx",
+      "page": "/(root)/(other)/changePassword",
+      "namedRegex": "^(?:/\\(root\\))?(?:/\\(other\\))?/changePassword(?:/)?$",
+      "routeKeys": {}
+    }
+  ],
+  "notFoundRoutes": [
+    {
+      "file": "./+not-found.tsx",
+      "page": "/+not-found",
+      "namedRegex": "^(?:/(?<notfound>.+?))?(?:/)?$",
+      "routeKeys": {
+        "notfound": "not-found"
+      }
+    }
+  ]
+}
