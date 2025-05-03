@@ -1,0 +1,116 @@
+/** @type {import('tailwindcss').Config} */
+
+module.exports = {
+  content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}", "./src/**/*.{html,js}"],
+  presets: [require("nativewind/preset")],
+  theme: {
+    extend: {
+      colors: {
+
+        primary: {
+          DEFAULT: "#DE4C73",
+          100: "#FCE8ED",
+          200: "#F9D1DB",
+          300: "#F5A3B7",
+          400: "#F07593",
+          500: "#DE4C73",
+          600: "#B23D5C",
+          700: "#852E45",
+          800: "#591F2E",
+          900: "#2C0F17",
+        },
+        secondary: {
+          DEFAULT: "#B1DCE3",
+          100: "#F2F9FA",
+          200: "#E5F3F5",
+          300: "#CBE7EB",
+          400: "#B1DCE3",
+          500: "#97D0DA",
+          600: "#79A6AE",
+          700: "#5B7D83",
+          800: "#3D5357",
+          900: "#1E2A2C",
+        },
+        success: {
+          100: "#F0FFF4",
+          200: "#C6F6D5",
+          300: "#9AE6B4",
+          400: "#68D391",
+          500: "#38A169",
+          600: "#2F855A",
+          700: "#276749",
+          800: "#22543D",
+          900: "#1C4532",
+        },
+        danger: {
+          100: "#FFF5F5",
+          200: "#FED7D7",
+          300: "#FEB2B2",
+          400: "#FC8181",
+          500: "#F56565",
+          600: "#E53E3E",
+          700: "#C53030",
+          800: "#9B2C2C",
+          900: "#742A2A",
+        },
+        warning: {
+          100: "#FFFBEB",
+          200: "#FEF3C7",
+          300: "#FDE68A",
+          400: "#FACC15",
+          500: "#EAB308",
+          600: "#CA8A04",
+          700: "#A16207",
+          800: "#854D0E",
+          900: "#713F12",
+        },
+        general: {
+          100: "#CED1DD",
+          200: "#858585",
+          300: "#EEEEEE",
+          400: "#0CC25F",
+          500: "#F6F8FA",
+          600: "#E6F3FF",
+          700: "#EBEBEB",
+          800: "#ADADAD",
+        },
+      },
+      fontFamily: {
+        MonaExtraLight: ["Mona-ExtraLight", "sans-serif"],
+        MonaLight: ["Mona-Light", "sans-serif"],
+        MonaRegular: ["Mona-Regular", "sans-serif"],
+        MonaMedium: ["Mona-Medium", "sans-serif"],
+        MonaSemiBold: ["Mona-SemiBold", "sans-serif"],
+        MonaBold: ["Mona-Bold", "sans-serif"],
+        MonaExtraBold: ["Mona-ExtraBold", "sans-serif"],
+        MonaBlack: ["Mona-Black", "sans-serif"],
+        MonaItalic: ["Mona-Italic", "sans-serif"],
+
+        // Condensed MonaSans
+        MonaCondensedExtraLight: ["Mona-Condensed-ExtraLight", "sans-serif"],
+        MonaCondensedLight: ["Mona-Condensed-Light", "sans-serif"],
+        MonaCondensedRegular: ["Mona-Condensed-Regular", "sans-serif"],
+        MonaCondensedMedium: ["Mona-Condensed-Medium", "sans-serif"],
+        MonaCondensedSemiBold: ["Mona-Condensed-SemiBold", "sans-serif"],
+        MonaCondensedBold: ["Mona-Condensed-Bold", "sans-serif"],
+        MonaCondensedExtraBold: ["Mona-Condensed-ExtraBold", "sans-serif"],
+        MonaCondensedBlack: ["Mona-Condensed-Black", "sans-serif"],
+
+        // Expanded MonaSans
+        MonaExpandedExtraLight: ["Mona-Expanded-ExtraLight", "sans-serif"],
+        MonaExpandedLight: ["Mona-Expanded-Light", "sans-serif"],
+        MonaExpandedRegular: ["Mona-Expanded-Regular", "sans-serif"],
+        MonaExpandedMedium: ["Mona-Expanded-Medium", "sans-serif"],
+        MonaExpandedSemiBold: ["Mona-Expanded-SemiBold", "sans-serif"],
+        MonaExpandedBold: ["Mona-Expanded-Bold", "sans-serif"],
+        MonaExpandedExtraBold: ["Mona-Expanded-ExtraBold", "sans-serif"],
+        MonaExpandedBlack: ["Mona-Expanded-Black", "sans-serif"],
+      },
+    },
+  },
+  plugins: [
+    function ({ addVariant }) {
+      addVariant("web", "@media (pointer: fine)"); // Targets devices with mouse (web)
+    },
+  ],
+};
