@@ -77,6 +77,7 @@ export default function RootLayout() {
 
   // Polling effect for user subscription
   useEffect(() => {
+    fetchUserSubscription();
     if (!isReady || !loaded || userPackage) return;
 
     const intervalId = setInterval(async () => {
@@ -122,7 +123,7 @@ export default function RootLayout() {
         }
       
         if (!hasToken && !noTrack) {
-          router.replace('/sign-in');
+          router.replace('/welcome');
           return;
         }
       

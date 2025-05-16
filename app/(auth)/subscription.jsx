@@ -1,30 +1,52 @@
+import * as Burnt from 'burnt';
+import { Link, router } from 'expo-router';
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, FlatList, Image, Platform } from 'react-native';
+import { View, Text, FlatList, Image, Platform, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Paystack } from 'react-native-paystack-webview';
-import * as Burnt from 'burnt';
-import { useRouter } from 'expo-router';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import { images } from '@/constants';
-import CustomButton from '@/components/CustomButton';
-import PackageCard from '@/components/PackageCard';
-import api, { handleLogout, retrieveData, storeData } from '@/utils/api';
+import Modal from 'react-native-modal';
 import Loading from '@/components/Loading';
-import { reload } from 'expo-router/build/global-state/routing';
+import FormField from '@/components/FormField';
+import PackageCard from '@/components/PackageCard';
+import CustomButton from '@/components/CustomButton';
+import api, { handleLogout, retrieveData, storeData } from '@/utils/api';
 
 const PAYSTACK_PUBLIC_KEY = process.env.EXPO_PUBLIC_PAYSTACK_KEY;
 
 const Subscription = () => {
-  const router = useRouter();
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [packages, setPackages] = useState([]);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isModalLoading, setIsModalLoading] = useState(false);
   const [user, setUser] = useState(null); // State to store the user ID
+  const [code, setCode] = useState('')
   const paystackWebViewRef = useRef(null);
 
   useEffect(() => {
     getPackages();
     fetchUser();
   }, []);
+
+  const handleSubmit = async () => {
+    setIsModalLoading(true);
+    try {
+      const response = await api.post('/api/auth/apply-coupon', {
+        packageId: selectedPackage._id,
+        code,
+        amountPaid: selectedPackage.price
+      });
+      if (response.data.status === 'success') {
+        onPaymentSuccess();
+      }
+    } catch (error) {
+    } finally {
+      setIsModalLoading(false);
+    }
+  };
 
   const getPackages = async () => {
     setIsLoading(true);
@@ -70,6 +92,8 @@ const Subscription = () => {
       setIsLoading(false);
     }
   };
+
+  
 
   
   const fetchUser = async () => {
@@ -164,13 +188,18 @@ const Subscription = () => {
 
   // List header component
   const ListHeaderComponent = () => (
-    <View className='p-6 pt-16'>
-      <View className="items-center">
-        <Text className="text-center font-MonaExpandedExtraBold text-3xl">Get Premium</Text>
-        <Text className="text-center font-MonaRegular text-md mt-1 w-11/12">
-          Unlock all the power of this mobile tool and enjoy a digital experience like never before!
-        </Text>
-      </View>
+    <View className='p-6 pt-10'>
+        <View className='flex-row justify-end '>
+          <TouchableOpacity onPress={handleLogout} className='p-2 mb-4'>
+            <Text className='font-MonaRegular text-lg text-primary'>Logout</Text>
+          </TouchableOpacity>
+        </View>
+        <View className="items-center">
+          <Text className="text-center font-MonaExpandedExtraBold text-3xl">Get Premium</Text>
+          <Text className="text-center font-MonaRegular text-md mt-1 w-11/12">
+            Unlock all the power of this mobile tool and enjoy a digital experience like never before!
+          </Text>
+        </View>
 
       <View className="py-10 web:mx-auto">
         <Image source={images.subImg} className="w-full h-48" resizeMode="contain" />
@@ -183,7 +212,7 @@ const Subscription = () => {
     <View className='p-6'>
       <View className='flex-row mt-6 gap-x-3'>
         <CustomButton
-          title="Continue"
+          title="Pay with Paystack"
           onPress={handlePayment}
           disabled={!selectedPackage}
           className={'flex-1'}
@@ -191,15 +220,15 @@ const Subscription = () => {
         />
 
         <CustomButton
-          title="Log Out"
-          onPress={handleLogout}
-          bgVariant='black'
+          title="Pay with Coupon"
+          onPress={() => setIsModalVisible(true)}
+          bgVariant='secondary'
           className={'bg-black px-8'}
         />
 
       </View>
 
-      <View className="items-center mt-6">
+      <View className="items-center mt-3">
         <Text className="text-center font-MonaLight w-11/12">
           By placing this order, you agree to the Terms of Service and Privacy Policy. Subscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period.
         </Text>
@@ -257,7 +286,36 @@ const Subscription = () => {
           ref={paystackWebViewRef}
         />
       )}
+      
+
+      <Modal isVisible={isModalVisible} className="z-10" onBackdropPress={() => setIsModalVisible(false)}>
+        <View className="bg-white p-6 rounded-lg">
+          <Text className="text-2xl font-MonaExpandedSemiBold mb-1">Apply Coupon</Text>
+          <Text className="font-MonaLight text-md mb-6">
+            Enter your coupon code to get a discount
+          </Text>
+
+          <FormField
+            title="Coupon Code"
+            placeholder="e.g. 123SAVE20"
+            iconBrand={MaterialCommunityIcons}
+            iconName="ticket-percent" // Coupon-like icon
+            size={20}
+            value={code}
+            handleChangeText={(value) => setCode(value)}
+            autoCapitalize="characters"
+          />
+
+          <CustomButton 
+            title={isModalLoading ? "Loading..." : "Apply"}
+            onPress={handleSubmit}
+            disabled={(!selectedPackage && !code) || isModalLoading }
+          />
+        </View>
+      </Modal>
+
       {isLoading && <Loading />}
+      
     </SafeAreaView>
   );
 };
